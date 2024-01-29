@@ -13,7 +13,8 @@ import lombok.Getter;
 @Getter
 public enum HttpCodeEnum {
     SUCCESS(200, "操作成功"),
-    ERROR(500, "服务器异常");
+    ERROR(500, "服务器异常"),
+    FIELD_MISSING(501, "字段缺失");
 
     private final int code;
     private final String msg;

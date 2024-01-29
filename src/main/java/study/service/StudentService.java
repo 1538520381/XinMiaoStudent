@@ -3,6 +3,8 @@ package study.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import study.entity.po.Student;
 
+import java.util.List;
+
 /**
  * @author Persolute
  * @version 1.0
@@ -11,4 +13,5 @@ import study.entity.po.Student;
  * @date 2024/1/29 10:13
  */
 public interface StudentService extends IService<Student> {
+    boolean add(List<Student> list);
 }

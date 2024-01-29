@@ -22,14 +22,20 @@ public class Student implements Serializable {
     // 主键
     private Long id;
 
-    // 姓名
-    private String name;
+    // 班级
+    private Long classId;
 
     // 学号
     private Long studentId;
 
-    // 班级
-    private Long classId;
+    // 密码
+    private String password;
+
+    // 盐
+    private String salt;
+
+    // 姓名
+    private String name;
 
     // 性别
     private Integer gender;
