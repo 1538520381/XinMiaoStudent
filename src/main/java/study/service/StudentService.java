@@ -2,6 +2,7 @@ package study.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import study.entity.po.Student;
+import study.entity.result.R;
 
 import java.util.List;
 
@@ -14,4 +15,5 @@ import java.util.List;
  */
 public interface StudentService extends IService<Student> {
     boolean add(List<Student> list);
+    R<Student> login(Student student);
 }

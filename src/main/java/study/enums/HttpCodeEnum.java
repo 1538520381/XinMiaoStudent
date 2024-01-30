@@ -14,7 +14,11 @@ import lombok.Getter;
 public enum HttpCodeEnum {
     SUCCESS(200, "操作成功"),
     ERROR(500, "服务器异常"),
-    FIELD_MISSING(501, "字段缺失");
+    FIELD_MISSING(501, "字段缺失"),
+    ACCOUNT_MISSING(502, "请输入账号"),
+    PASSWORD_MISSING(503, "请输入密码"),
+    ACCOUNT_UNEXIST(504, "账号不存在"),
+    PASSWORD_ERROR(505, "密码错误");
 
     private final int code;
     private final String msg;

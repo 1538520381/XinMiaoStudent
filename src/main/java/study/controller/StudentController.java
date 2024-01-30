@@ -11,6 +11,7 @@ import study.entity.result.R;
 import study.enums.HttpCodeEnum;
 import study.service.StudentService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -46,5 +47,27 @@ public class StudentController {
         } else {
             return R.success("导入成功");
         }
+    }
+
+    /*
+     * @author Persolute
+     * @version 1.0
+     * @description 学生登录
+     * @email 1538520381@qq.com
+     * @date 2024/1/29 14:23
+     */
+    @PostMapping("/login")
+    public R<Student> login(HttpServletRequest request, @RequestBody Student student) {
+        log.info("123");
+        if (student.getStudentId() == null) {
+            return R.error(HttpCodeEnum.ACCOUNT_MISSING);
+        } else if (student.getPassword() == null) {
+            return R.error(HttpCodeEnum.PASSWORD_ERROR);
+        }
+        R<Student> r = studentService.login(student);
+        if (r.getCode() == HttpCodeEnum.SUCCESS.getCode()) {
+            request.getSession().setAttribute("user", r.getData().getId());
+        }
+        return r;
     }
 }
