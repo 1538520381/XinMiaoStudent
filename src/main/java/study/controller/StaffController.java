@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import study.entity.po.Staff;
 import study.entity.result.R;
 import study.entity.vo.StaffVO;
@@ -22,7 +23,7 @@ import java.util.Objects;
  * @email 1538520381@qq.com
  * @date 2024/1/31 15:31
  */
-@Controller
+@RestController
 @RequestMapping("/staff")
 public class StaffController {
     @Autowired

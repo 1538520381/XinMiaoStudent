@@ -15,17 +15,12 @@ import java.time.LocalDateTime;
  * @date 2024/1/31 14:07
  */
 @Data
-public class Staff implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+public class Staff {
     // 主键
     private Long id;
 
     // 学校主键
     private Long schoolId;
-
-    // 姓名
-    private String name;
 
     // 邮箱
     private String email;

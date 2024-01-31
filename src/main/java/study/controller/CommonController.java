@@ -1,14 +1,12 @@
 package study.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import study.entity.result.R;
 import study.enums.HttpCodeEnum;
 import study.utils.CodeUtil;
@@ -22,7 +20,8 @@ import javax.servlet.http.HttpServletRequest;
  * @email 1538520381@qq.com
  * @date 2024/1/31 16:02
  */
-@Controller
+@Slf4j
+@RestController
 @RequestMapping("/common")
 public class CommonController {
     @Autowired
@@ -30,7 +29,7 @@ public class CommonController {
 
     // 发送邮箱者的邮箱
     @Value("${spring.mail.username}")
-    private static String fromEmail;
+    private String fromEmail;
 
     /*
      * @author Persolute
@@ -41,8 +40,8 @@ public class CommonController {
      */
     @PostMapping("/sendCode/{toEmail}")
     public R<String> sendCode(HttpServletRequest request, @PathVariable String toEmail) {
-        if (toEmail == null) {
-            return R.error(HttpCodeEnum.EMAIL_MISSING);
+        if (!CodeUtil.isEmail(toEmail)) {
+            return R.error(HttpCodeEnum.ILLEGAL_MAIL);
         }
 
         String code = CodeUtil.getRandomNumCode(6);

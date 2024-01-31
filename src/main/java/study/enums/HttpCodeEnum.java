@@ -25,7 +25,8 @@ public enum HttpCodeEnum {
     CODE_MISSING(509, "请输入验证码"),
     CODE_WRONG(510, "验证码错误"),
     REGISTER_FAIL(511, "注册失败"),
-    SEND_CODE_FAIL(512, "发送验证码失败");
+    SEND_CODE_FAIL(512, "发送验证码失败"),
+    ILLEGAL_MAIL(513, "邮箱不合法");
 
 
     private final int code;
