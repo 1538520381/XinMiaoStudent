@@ -11,4 +11,5 @@ import study.entity.po.Staff;
  * @date 2024/1/31 15:30
  */
 public interface StaffService extends IService<Staff> {
+    boolean register(Staff staff);
 }

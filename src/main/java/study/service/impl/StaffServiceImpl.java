@@ -15,4 +15,15 @@ import study.service.StaffService;
  */
 @Service
 public class StaffServiceImpl extends ServiceImpl<StaffMapper, Staff> implements StaffService {
+    /*
+     * @author Persolute
+     * @version 1.0
+     * @description 职员注册
+     * @email 1538520381@qq.com
+     * @date 2024/1/31 15:59
+     */
+    @Override
+    public boolean register(Staff staff) {
+        return save(staff);
+    }
 }

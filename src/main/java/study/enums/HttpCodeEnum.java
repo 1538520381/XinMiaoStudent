@@ -18,7 +18,14 @@ public enum HttpCodeEnum {
     ACCOUNT_MISSING(502, "请输入账号"),
     PASSWORD_MISSING(503, "请输入密码"),
     ACCOUNT_UNEXIST(504, "账号不存在"),
-    PASSWORD_ERROR(505, "密码错误");
+    PASSWORD_ERROR(505, "密码错误"),
+    NO_PERMISSION(506, "无权限"),
+    SCHOOL_MISSING(507, "请选择学校"),
+    EMAIL_MISSING(508, "请输入邮箱"),
+    CODE_MISSING(509, "请输入验证码"),
+    CODE_WRONG(510, "验证码错误"),
+    REGISTER_FAIL(511, "注册失败");
+
 
     private final int code;
     private final String msg;
