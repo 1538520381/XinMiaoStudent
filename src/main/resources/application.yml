@@ -9,6 +9,11 @@ spring:
       url: jdbc:mysql://localhost:3306/Xin_Miao_Student?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
       username: username
       password: password
+  mail:
+    host: smtp.qq.com
+    username: username
+    password: password
+    default-encoding: UTF-8
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
