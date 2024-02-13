@@ -76,6 +76,14 @@ public class R<T> implements Serializable {
     }
 
     public static <T> R<T> error(HttpCodeEnum httpCodeEnum, String msg, T data) {
-        return new R<>(httpCodeEnum.getCode(), msg, data);
+        return error(httpCodeEnum.getCode(), msg, data);
+    }
+
+    public static <T> R<T> error(Integer code, String msg) {
+        return error(code, msg, null);
+    }
+
+    public static <T> R<T> error(Integer code, String msg, T data) {
+        return new R<>(code, msg, data);
     }
 }
