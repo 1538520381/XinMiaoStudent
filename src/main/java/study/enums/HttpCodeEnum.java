@@ -21,7 +21,10 @@ public enum HttpCodeEnum {
     PASSWORD_ERROR(505, "密码错误"),
     NO_PERMISSION(506, "无权限"),
     SEND_CODE_FAIL(507, "发送验证码失败"),
-    ILLEGAL_MAIL(508, "邮箱不合法");
+    ILLEGAL_MAIL(508, "邮箱不合法"),
+    UPLOAD_FAIL(509, "上传失败"),
+    FILE_TO_BIG(510, "文件过大"),
+    FILE_UNEXIST(511, "文件不存在");
 
 
     private final int code;
