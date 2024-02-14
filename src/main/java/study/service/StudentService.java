@@ -14,6 +14,9 @@ import java.util.List;
  * @date 2024/1/29 10:13
  */
 public interface StudentService extends IService<Student> {
-    boolean add(List<Student> list);
+    boolean add(Long schoolId, List<Student> list);
+
     R<Student> login(Student student);
+
+    boolean update(Student student);
 }

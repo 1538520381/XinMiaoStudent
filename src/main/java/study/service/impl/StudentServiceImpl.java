@@ -33,13 +33,15 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
      */
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public boolean add(List<Student> list) {
+    public boolean add(Long schoolId, List<Student> list) {
         for (Student student : list) {
             String salt = PwdUtil.getRandomSalt();
             student.setSalt(salt);
 
             String password = student.getPassword();
             student.setPassword(DigestUtils.md5DigestAsHex((password + salt).getBytes()));
+
+            student.setSchoolId(schoolId);
         }
         return saveBatch(list);
     }
@@ -65,5 +67,13 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
             return R.error(HttpCodeEnum.PASSWORD_ERROR);
         }
         return R.success("登录成功", student0);
+    }
+
+    @Override
+    public boolean update(Student student) {
+        String salt = PwdUtil.getRandomSalt();
+        student.setSalt(salt);
+        student.setPassword(DigestUtils.md5DigestAsHex((student.getPassword() + salt).getBytes()));
+        return updateById(student);
     }
 }

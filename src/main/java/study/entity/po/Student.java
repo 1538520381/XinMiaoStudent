@@ -22,6 +22,15 @@ public class Student implements Serializable {
     // 主键
     private Long id;
 
+    // 学校主键
+    private Long schoolId;
+
+    // 学院
+    private String college;
+
+    // 专业
+    private String speciality;
+
     // 班级
     private Long classId;
 
@@ -40,17 +49,11 @@ public class Student implements Serializable {
     // 性别
     private Integer gender;
 
+    // 照片名
+    private String photo;
+
     // 手机号
     private Long phone;
-
-    // 学院
-    private String college;
-
-    // 专业
-    private String speciality;
-
-    // 照片名
-    private String picture;
 
     // 地址
     private String address;
@@ -62,4 +65,12 @@ public class Student implements Serializable {
     // 修改时间
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
+
+    // 创建用户
+    @TableField(fill = FieldFill.INSERT)
+    private Long createUser;
+
+    // 修改用户
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Long updateUser;
 }

@@ -18,6 +18,6 @@ public class SchoolVO implements Serializable {
     // 主键
     private Long id;
 
-    // 学校账号
+    // 账号
     private String account;
 }
