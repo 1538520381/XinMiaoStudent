@@ -86,12 +86,30 @@ public class StudentController {
      * @email 1538520381@qq.com
      * @date 2024/2/5 16:29
      */
-    @PutMapping("/update")
+    @PutMapping
     public R<String> update(@RequestBody Student student) {
         if (studentService.update(student)) {
             return R.success("修改成功");
         } else {
             return R.error("修改失败");
         }
+    }
+
+    /*
+     * @author Persolute
+     * @version 1.0
+     * @description 根据id查询用户信息
+     * @email 1538520381@qq.com
+     * @date 2024/2/14 18:10
+     */
+    @GetMapping("/{id}")
+    public R<StudentVO> getById(@PathVariable Long id) {
+        Student student = studentService.getById(id);
+        if (student == null) {
+            return R.error(HttpCodeEnum.USER_UNEXIST);
+        }
+        StudentVO studentVO = new StudentVO();
+        BeanUtils.copyProperties(student, studentVO);
+        return R.success("查询成功", studentVO);
     }
 }

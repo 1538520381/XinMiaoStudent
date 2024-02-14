@@ -24,7 +24,8 @@ public enum HttpCodeEnum {
     ILLEGAL_MAIL(508, "邮箱不合法"),
     UPLOAD_FAIL(509, "上传失败"),
     FILE_TO_BIG(510, "文件过大"),
-    FILE_UNEXIST(511, "文件不存在");
+    FILE_UNEXIST(511, "文件不存在"),
+    USER_UNEXIST(512, "用户不存在");
 
 
     private final int code;

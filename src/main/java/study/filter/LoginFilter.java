@@ -33,7 +33,8 @@ public class LoginFilter implements Filter {
     private static final String[] STUDENT = new String[]{
             "/common/**",
             "/student/login",
-            "/student/update"
+            "/student",
+            "/student/{id}"
     };
 
     @Override
