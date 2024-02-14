@@ -69,6 +69,13 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
         return R.success("登录成功", student0);
     }
 
+    /*
+     * @author Persolute
+     * @version 1.0
+     * @description 学生个人信息更新
+     * @email 1538520381@qq.com
+     * @date 2024/2/14 18:30
+     */
     @Override
     public boolean update(Student student) {
         String salt = PwdUtil.getRandomSalt();
