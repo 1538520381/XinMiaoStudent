@@ -1,6 +1,7 @@
 package study.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -9,6 +10,7 @@ import org.springframework.util.DigestUtils;
 import study.dao.StudentMapper;
 import study.entity.po.Student;
 import study.entity.result.R;
+import study.entity.dto.StudentInquireDTO;
 import study.enums.HttpCodeEnum;
 import study.service.StudentService;
 import study.utils.PwdUtil;
@@ -82,5 +84,34 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
         student.setSalt(salt);
         student.setPassword(DigestUtils.md5DigestAsHex((student.getPassword() + salt).getBytes()));
         return updateById(student);
+    }
+
+    /*
+     * @author Persolute
+     * @version 1.0
+     * @description 根据限制分页查询学生
+     * @email 1538520381@qq.com
+     * @date 2024/2/14 18:31
+     */
+    @Override
+    public Page<Student> getByLimit(Integer page, Integer pageSize, Long schoolId, StudentInquireDTO studentInquireDTO) {
+        LambdaQueryWrapper<Student> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(Student::getSchoolId, schoolId);
+        if (studentInquireDTO.getCollege() != null) {
+            lambdaQueryWrapper.eq(Student::getCollege, studentInquireDTO.getCollege());
+        }
+        if (studentInquireDTO.getSpeciality() != null) {
+            lambdaQueryWrapper.eq(Student::getSpeciality, studentInquireDTO.getSpeciality());
+        }
+        if (studentInquireDTO.getClassId() != null) {
+            lambdaQueryWrapper.eq(Student::getClassId, studentInquireDTO.getClassId());
+        }
+        if (studentInquireDTO.getStudentId() != null) {
+            lambdaQueryWrapper.eq(Student::getStudentId, studentInquireDTO.getStudentId());
+        }
+
+        Page<Student> students = new Page<>(page, pageSize);
+        page(students, lambdaQueryWrapper);
+        return students;
     }
 }

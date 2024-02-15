@@ -1,8 +1,10 @@
 package study.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import study.entity.po.Student;
 import study.entity.result.R;
+import study.entity.dto.StudentInquireDTO;
 
 import java.util.List;
 
@@ -19,4 +21,6 @@ public interface StudentService extends IService<Student> {
     R<Student> login(Student student);
 
     boolean update(Student student);
+
+    Page<Student> getByLimit(Integer page, Integer pageSize, Long schoolId, StudentInquireDTO studentInquireDTO);
 }

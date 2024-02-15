@@ -1,18 +1,20 @@
 package study.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import study.entity.po.Student;
 import study.entity.result.R;
-import study.entity.vo.SchoolVO;
+import study.entity.dto.StudentInquireDTO;
 import study.entity.vo.StudentVO;
 import study.enums.HttpCodeEnum;
 import study.service.StudentService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Persolute
@@ -98,7 +100,7 @@ public class StudentController {
     /*
      * @author Persolute
      * @version 1.0
-     * @description 根据id查询用户信息
+     * @description 根据主键查询学生信息
      * @email 1538520381@qq.com
      * @date 2024/2/14 18:10
      */
@@ -111,5 +113,31 @@ public class StudentController {
         StudentVO studentVO = new StudentVO();
         BeanUtils.copyProperties(student, studentVO);
         return R.success("查询成功", studentVO);
+    }
+
+    /*
+     * @author Persolute
+     * @version 1.0
+     * @description 根据限制分页查询学生
+     * @email 1538520381@qq.com
+     * @date 2024/2/14 18:36
+     */
+    @GetMapping("/limit/{page}/{pageSize}")
+    public R<Page<StudentVO>> getByLimit(HttpServletRequest request, @PathVariable Integer page, @PathVariable Integer pageSize, @RequestBody StudentInquireDTO studentInquireDTO) {
+        Long schoolId = (Long) request.getSession().getAttribute("school");
+        if (schoolId == null) {
+            return R.error(HttpCodeEnum.NO_PERMISSION);
+        }
+        Page<Student> studentPages = studentService.getByLimit(page, pageSize, schoolId, studentInquireDTO);
+        Page<StudentVO> studentVOPages = new Page<>();
+        BeanUtils.copyProperties(studentPages, studentVOPages, "records");
+        List<Student> students = studentPages.getRecords();
+        List<StudentVO> studentVOS = students.stream().map(student -> {
+            StudentVO studentVO = new StudentVO();
+            BeanUtils.copyProperties(student, studentVO);
+            return studentVO;
+        }).collect(Collectors.toList());
+        studentVOPages.setRecords(studentVOS);
+        return R.success("查询成功", studentVOPages);
     }
 }
