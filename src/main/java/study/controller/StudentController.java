@@ -140,4 +140,20 @@ public class StudentController {
         studentVOPages.setRecords(studentVOS);
         return R.success("查询成功", studentVOPages);
     }
+
+    /*
+     * @author Persolute
+     * @version 1.0
+     * @description 根据主键删除学生
+     * @email 1538520381@qq.com
+     * @date 2024/2/15 9:16
+     */
+    @DeleteMapping("/{id}")
+    public R<String> deleteById(@PathVariable Long id) {
+        if (studentService.removeById(id)) {
+            return R.success("删除成功");
+        } else {
+            return R.error("删除失败");
+        }
+    }
 }
