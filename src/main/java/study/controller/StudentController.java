@@ -156,4 +156,20 @@ public class StudentController {
             return R.error("删除失败");
         }
     }
+
+    /*
+     * @author Persolute
+     * @version 1.0
+     * @description 根据主键批量删除学生
+     * @email 1538520381@qq.com
+     * @date 2024/2/15 9:33
+     */
+    @DeleteMapping
+    public R<String> deleteByIds(@RequestParam List<Long> ids) {
+        if (studentService.removeByIds(ids)) {
+            return R.success("删除成功");
+        } else {
+            return R.error("删除失败");
+        }
+    }
 }
